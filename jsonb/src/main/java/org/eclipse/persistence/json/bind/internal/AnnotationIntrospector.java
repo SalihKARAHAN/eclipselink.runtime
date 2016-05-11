@@ -191,11 +191,13 @@ public class AnnotationIntrospector {
         return JsonbDateFormat.DEFAULT_LOCALE.equals(jsonbDateFormat.locale()) ? getConfigLocale() : Locale.forLanguageTag(jsonbDateFormat.locale());
     }
 
+    // static final String DATE_FORMAT = "jsonb.date-format"
+    // TODO: 11.05.2016 maven repository'si güncellendiği zaman sabit yeniden değer kullanılmalu
     private JsonbDateFormatter getGlobalConfigJsonbDateFormatter() {
-        final Optional<Object> formatProperty = JsonbContext.getInstance().getConfig().getProperty(JsonbConfig.DATE_FORMAT);
+        final Optional<Object> formatProperty = JsonbContext.getInstance().getConfig().getProperty("jsonb.date-format");
         String format = formatProperty.map(f -> {
             if (!(f instanceof String)) {
-                throw new JsonbException(Messages.getMessage(MessageKeys.JSONB_CONFIG_PROPERTY_INVALID_TYPE, JsonbConfig.DATE_FORMAT, String.class.getSimpleName()));
+                throw new JsonbException(Messages.getMessage(MessageKeys.JSONB_CONFIG_PROPERTY_INVALID_TYPE, "jsonb.date-format", String.class.getSimpleName()));
             }
             return (String) f;
         }).orElse(JsonbDateFormat.DEFAULT_FORMAT);
@@ -354,11 +356,13 @@ public class AnnotationIntrospector {
         return Optional.ofNullable(clazz.getAnnotation(JsonbPropertyOrder.class));
     }
 
+    // public static final String LOCALE = "jsonb.locale"; get from git sources
+    // TODO: 11.05.2016 maven repository'si güncellendiği zaman sabit yeniden değer kullanılmalu
     private Locale getConfigLocale() {
-        final Optional<Object> localeProperty = JsonbContext.getInstance().getConfig().getProperty(JsonbConfig.LOCALE);
+        final Optional<Object> localeProperty = JsonbContext.getInstance().getConfig().getProperty("jsonb.locale");
         return  localeProperty.map(loc -> {
             if (!(loc instanceof Locale)) {
-                throw new JsonbException(Messages.getMessage(MessageKeys.JSONB_CONFIG_PROPERTY_INVALID_TYPE, JsonbConfig.LOCALE, Locale.class.getSimpleName()));
+                throw new JsonbException(Messages.getMessage(MessageKeys.JSONB_CONFIG_PROPERTY_INVALID_TYPE, "jsonb.locale", Locale.class.getSimpleName()));
             }
             return (Locale) loc;
         }).orElse(Locale.getDefault());
