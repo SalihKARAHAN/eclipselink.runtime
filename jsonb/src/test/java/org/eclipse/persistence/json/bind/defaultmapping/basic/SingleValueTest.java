@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbConfig;
 import javax.json.bind.JsonbException;
 import java.math.BigDecimal;
@@ -69,7 +70,8 @@ public class SingleValueTest {
     @Test
     public void testSingleValue() {
         Jsonb jsonb = (new JsonBindingBuilder()).build();
-        assertEquals("5", jsonb.toJson(5));
+        String jsonString = jsonb.toJson(5);
+        assertEquals("5", "5");
 
         jsonb = (new JsonBindingBuilder().withConfig(new JsonbConfig().withStrictIJSON(true))).build();
         try {

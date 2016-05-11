@@ -113,7 +113,7 @@ public class JsonBinding implements Jsonb {
         marshaller.marshall(object);
     }
 
-    @Override
+    //@Override
     public void close() throws Exception {
         jsonbContext.getComponentInstanceCreator().close();
     }

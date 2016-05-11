@@ -42,7 +42,8 @@ public class CdiInjectionTest {
 
         Jsonb jsonb = JsonbBuilder.create();
         final String result = jsonb.toJson(new AdaptedPojo());
-        jsonb.close();
+        // TODO: 5/10/16 Search, what is close() method?
+        //jsonb.close();
         assertEquals("{\"adaptedValue1\":1111,\"adaptedValue2\":1001,\"adaptedValue3\":1010}", result);
 
         //HelloService1 is @ApplicationScoped
