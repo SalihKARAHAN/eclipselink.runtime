@@ -192,7 +192,7 @@ public class AnnotationIntrospector {
     }
 
     // DATE_FORMAT = "jsonb.date-format"
-    // TODO: 5/10/16 if maven repository update, DATE_FORMAT const value can be use 
+    // TODO: 5/10/16 if maven repository update, DATE_FORMAT const value can be use
     private JsonbDateFormatter getGlobalConfigJsonbDateFormatter() {
         final Optional<Object> formatProperty = JsonbContext.getInstance().getConfig().getProperty("jsonb.date-format");
         String format = formatProperty.map(f -> {
