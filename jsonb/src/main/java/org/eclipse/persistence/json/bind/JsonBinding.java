@@ -113,8 +113,7 @@ public class JsonBinding implements Jsonb {
         marshaller.marshall(object);
     }
 
-    //@Override
-    // TODO: 11.05.2016 close() metodu neden kaldırıldı?
+    @Override
     public void close() throws Exception {
         jsonbContext.getComponentInstanceCreator().close();
     }

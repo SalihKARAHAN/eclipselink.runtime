@@ -192,12 +192,11 @@ public class AnnotationIntrospector {
     }
 
     // DATE_FORMAT = "jsonb.date-format"
-    // TODO: 5/10/16 if maven repository update, DATE_FORMAT const value can be use
     private JsonbDateFormatter getGlobalConfigJsonbDateFormatter() {
-        final Optional<Object> formatProperty = JsonbContext.getInstance().getConfig().getProperty("jsonb.date-format");
+        final Optional<Object> formatProperty = JsonbContext.getInstance().getConfig().getProperty(JsonbConfig.DATE_FORMAT);
         String format = formatProperty.map(f -> {
             if (!(f instanceof String)) {
-                throw new JsonbException(Messages.getMessage(MessageKeys.JSONB_CONFIG_PROPERTY_INVALID_TYPE, "jsonb.date-format", String.class.getSimpleName()));
+                throw new JsonbException(Messages.getMessage(MessageKeys.JSONB_CONFIG_PROPERTY_INVALID_TYPE, JsonbConfig.DATE_FORMAT, String.class.getSimpleName()));
             }
             return (String) f;
         }).orElse(JsonbDateFormat.DEFAULT_FORMAT);
@@ -357,12 +356,11 @@ public class AnnotationIntrospector {
     }
 
     // LOCALE = "jsonb.locale"
-    // TODO: 5/10/16 if maven repository update, LOCALE const value can be use
     private Locale getConfigLocale() {
-        final Optional<Object> localeProperty = JsonbContext.getInstance().getConfig().getProperty("jsonb.locale");
+        final Optional<Object> localeProperty = JsonbContext.getInstance().getConfig().getProperty(JsonbConfig.LOCALE);
         return  localeProperty.map(loc -> {
             if (!(loc instanceof Locale)) {
-                throw new JsonbException(Messages.getMessage(MessageKeys.JSONB_CONFIG_PROPERTY_INVALID_TYPE, "jsonb.locale", Locale.class.getSimpleName()));
+                throw new JsonbException(Messages.getMessage(MessageKeys.JSONB_CONFIG_PROPERTY_INVALID_TYPE, JsonbConfig.LOCALE, Locale.class.getSimpleName()));
             }
             return (Locale) loc;
         }).orElse(Locale.getDefault());
